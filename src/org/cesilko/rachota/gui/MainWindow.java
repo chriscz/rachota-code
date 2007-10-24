@@ -346,6 +346,7 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
         DayView dayView = (DayView) tpViews.getComponentAt(TAB_DAY_VIEW);
         SettingsDialog dialog = new SettingsDialog(this);
         dialog.addPropertyChangeListener(dayView);
+        dialog.addPropertyChangeListener(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_mnSettingsActionPerformed
     
@@ -456,6 +457,12 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
         setTitle(title + " " + dayView.getTitleSuffix());
         if (evt.getPropertyName().equals("day"))
             tpViews.setSelectedIndex(0);
+        if (evt.getPropertyName().equals("settings")) {
+            String reportedWeek = (String) Settings.getDefault().getSetting("rachota.reported.week");
+            if (reportedWeek != null)
+                if (reportedWeek.equals("-1"))
+                    Settings.getDefault().setSetting("rachota.reported.week", null);
+        }
         updateSystemTray(dayView);
     }
     
