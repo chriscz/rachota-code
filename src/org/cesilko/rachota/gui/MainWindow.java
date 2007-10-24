@@ -440,7 +440,9 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
     /** Name and version of application. */
     protected static final String title = "Rachota 2.1";
     /** Build number. */
-    protected static final String build = "#071023";
+    protected static final String build = "#071024";
+    /** Flag to prevent multiple reporting of activity. */
+    private boolean reportingActivity;
     /** Index of day view tab. */
     private static final int TAB_DAY_VIEW = 0;
     /** Index of history view tab. */
@@ -680,15 +682,19 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
         final Thread connectionThread = new Thread() {
             public void run() {
                 try {
+                    if (reportingActivity) return;
+                    reportingActivity = true;
                     URL url = new URL(url_string);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.getResponseMessage();
                     connection.disconnect();
                     Settings.getDefault().setSetting("rachota.reported.week", "" + currentWeek);
+                    reportingActivity = false;
                 }
                 catch (Exception e) {
                     System.out.println("Error: Can't connect to Rachota Analytics server.");
                     Settings.getDefault().setSetting("rachota.reported.week", "-1");
+                    reportingActivity = false;
                 }
             }};
         connectionThread.start();
