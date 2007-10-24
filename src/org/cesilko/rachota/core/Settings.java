@@ -188,8 +188,8 @@ public class Settings {
                     settings.setSetting(key, new Boolean(value));
                 else settings.setSetting(key, value);
             }
-            String proxyHost = (String) settings.getSetting("http.proxyHost");
-            String proxyPort = (String) settings.getSetting("http.proxyPort");
+            String proxyHost = (String) settings.getSetting("proxyHost");
+            String proxyPort = (String) settings.getSetting("proxyPort");
             if ((proxyHost != null) && (proxyHost.length() > 0)) System.setProperty("http.proxyHost", proxyHost);
             else System.clearProperty("http.proxyHost");
             if ((proxyPort != null) && (proxyPort.length() > 0)) System.setProperty("http.proxyPort", proxyPort);
