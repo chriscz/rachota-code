@@ -454,7 +454,7 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
     /** Name and version of application. */
     protected static final String title = "Rachota 2.1";
     /** Build number. */
-    protected static final String build = "#071024";
+    protected static final String build = "#071101";
     /** Flag to prevent multiple reporting of activity. */
     private boolean reportingActivity;
     /** Index of day view tab. */
