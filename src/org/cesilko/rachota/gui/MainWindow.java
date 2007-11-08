@@ -35,6 +35,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -376,7 +377,7 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
     private void mnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAboutActionPerformed
         String text = title + " (build " + build + ")\n";
         text = text + Translator.getTranslation("INFORMATION.PROGRAM");
-        text = text + "\n<html><body><a href=\"http://rachota.sourceforge.net\">http://rachota.sourceforge.net</a></body";
+        text = text + "\n<html><body><a href=\"http://rachota.sourceforge.net\">http://rachota.sourceforge.net</a></body></html>";
         text = text + "\n\njiri.kovalsky@centrum.cz\n2007 ©";
         JOptionPane.showMessageDialog(this, text, Translator.getTranslation("INFORMATION.INFORMATION_TITLE"), JOptionPane.INFORMATION_MESSAGE, new javax.swing.ImageIcon(getClass().getResource("/org/cesilko/rachota/gui/images/logo_name_48.png")));
     }//GEN-LAST:event_mnAboutActionPerformed
@@ -454,7 +455,7 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
     /** Name and version of application. */
     protected static final String title = "Rachota 2.1";
     /** Build number. */
-    protected static final String build = "#071101";
+    protected static final String build = "#071108";
     /** Flag to prevent multiple reporting of activity. */
     private boolean reportingActivity;
     /** Index of day view tab. */
@@ -689,7 +690,14 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
             calendar.add(Calendar.DAY_OF_WEEK, 1);
             day = plan.getDay(calendar.getTime());
         }
-        String WUT = "" + totalTime + "|" + idleTime + "|" + privateTime; // Week Usage Times
+        String userDir = (String) Settings.getDefault().getSetting("userDir");
+        File[] diaries = new File(userDir).listFiles(new FileFilter() {
+            public boolean accept(File file) {
+                String name = file.getName();
+                return (name.startsWith("diary_") && (name.endsWith(".xml")));
+            }
+        });
+        String WUT = "" + totalTime + "|" + idleTime + "|" + privateTime + "|" + diaries.length; // Week Usage Times
         try {
             RID = URLEncoder.encode(RID, "UTF-8");
             WUT = URLEncoder.encode(WUT, "UTF-8");
