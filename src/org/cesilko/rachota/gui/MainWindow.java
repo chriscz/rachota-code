@@ -139,7 +139,7 @@ public class MainWindow extends javax.swing.JFrame implements PropertyChangeList
         AnalyticsView analyticsView = new AnalyticsView();
         tpViews.add(analyticsView, TAB_ANALYTICS_VIEW);
         setSize(511, 646);
-        setTitle(dayView.getTitleSuffix() + " " + Tools.title);
+        setTitle(dayView.getTitleSuffix() + Tools.title);
         String size = (String) Settings.getDefault().getSetting("size");
         String location = (String) Settings.getDefault().getSetting("location");
         if (size != null) {
@@ -575,7 +575,7 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
      */
     public void propertyChange(PropertyChangeEvent evt) {
         DayView dayView = (DayView) tpViews.getComponentAt(TAB_DAY_VIEW);
-        setTitle(dayView.getTitleSuffix() + " " + Tools.title);
+        setTitle(dayView.getTitleSuffix() + Tools.title);
         if (evt.getPropertyName().equals("day"))
             tpViews.setSelectedIndex(0);
         if (evt.getPropertyName().equals("enable_menu")) {
@@ -601,7 +601,7 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
                     System.setProperty("rachotaTrayColor", neededRachotaTrayColor);
                 }
                 trayIcon.setPopupMenu(getTrayPopupMenu());
-                trayIcon.setToolTip(Tools.title + " " + dayView.getTitleSuffix());
+                trayIcon.setToolTip(dayView.getTitleSuffix() + Tools.title);
                 break;
             }
         }
