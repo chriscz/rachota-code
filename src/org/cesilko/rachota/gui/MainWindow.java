@@ -669,7 +669,7 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
                     TrayIcon[] trayIcons = systemTray.getTrayIcons();
                     for (int i = 0; i < trayIcons.length; i++) {
                         TrayIcon trayIcon = trayIcons[i];
-                        if (trayIcon.getToolTip().startsWith(Tools.title)) {
+                        if (trayIcon.getToolTip().endsWith(Tools.title)) {
                             trayIcon.setImage(image);
                             break;
                         }
@@ -695,7 +695,7 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
                 TrayIcon[] trayIcons = systemTray.getTrayIcons();
                 for (int i = 0; i < trayIcons.length; i++) {
                     TrayIcon trayIcon = trayIcons[i];
-                    if (trayIcon.getToolTip().startsWith(Tools.title)) {
+                    if (trayIcon.getToolTip().endsWith(Tools.title)) {
                         trayIcon.setImage(image);
                         break;
                     }
@@ -711,7 +711,7 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
                 TrayIcon[] trayIcons = systemTray.getTrayIcons();
                 for (int i = 0; i < trayIcons.length; i++) {
                     TrayIcon trayIcon = trayIcons[i];
-                    if (trayIcon.getToolTip().startsWith(Tools.title)) {
+                    if (trayIcon.getToolTip().endsWith(Tools.title)) {
                         trayIcon.setImage(image);
                         break;
                     }
@@ -782,7 +782,7 @@ private void formWindowIconified(java.awt.event.WindowEvent evt) {//GEN-FIRST:ev
                 TrayIcon[] trayIcons = systemTray.getTrayIcons();
                 for (int i = 0; i < trayIcons.length; i++) {
                     TrayIcon trayIcon = trayIcons[i];
-                    if (trayIcon.getToolTip().startsWith(Tools.title))
+                    if (trayIcon.getToolTip().endsWith(Tools.title))
                         trayIcon.displayMessage(Translator.getTranslation("WARNING.WARNING_TITLE"), Translator.getTranslation("INACTIVITYDIALOG.LBL_INACTIVITY_MESSAGE", new String[] {(String) Settings.getDefault().getSetting("inactivityTime")}), TrayIcon.MessageType.WARNING);
                 }
                 String inactivityAction = (String) Settings.getDefault().getSetting("inactivityAction");
